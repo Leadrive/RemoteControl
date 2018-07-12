@@ -1,0 +1,755 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>server端 · WHUWZP's Go-Learning</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="whuwzp">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-alerts/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.html" />
+    
+    
+    <link rel="prev" href="1.html" />
+    
+
+    <script src="gitbook/gitbook-plugin-graph/d3.min.js"></script>
+    <script src="gitbook/gitbook-plugin-graph/function-plot.js"></script>    
+
+    
+        <link rel="shortcut icon" href='img/sys/wiki.jpg' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='img/sys/wiki.jpg' type="image/x-icon">
+    
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="whuwzp.github.io/golearning" target="_blank" class="custom-link">Go-Learning</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        <li class="header">简介</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">远控项目</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="1.html">
+            
+                <a href="1.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    slave端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="2.html">
+            
+                <a href="2.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    server端
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="3.html">
+            
+                <a href="3.html">
+            
+                    
+                        <b>2.3.</b>
+                    
+                    重写项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >server端</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>title: Go-&#x8FDC;&#x7A0B;&#x63A7;&#x5236;&#x9879;&#x76EE;(2)-server&#x7AEF;
+date: 2018-04-20 18:35:33
+tags: [go, &#x8BED;&#x8A00;]
+categories: &#x79D1;&#x7814;</p>
+<hr>
+<blockquote>
+<p>&#x5927;&#x795E;(github&#x5E10;&#x53F7;: kingname), &#x9879;&#x76EE;&#x6E90;&#x7801;&#x5730;&#x5740;:<a href="https://github.com/kingname/RemoteControl/" target="_blank">https://github.com/kingname/RemoteControl/</a> , &#x7528;python&#x5B9E;&#x73B0;&#x8FDC;&#x7A0B;&#x63A7;&#x5236;&#x3002;&#x672C;&#x9879;&#x76EE;&#x662F;&#x60F3;&#x91C7;&#x7528;Go&#x8BED;&#x8A00;&#x5B9E;&#x73B0;&#x7C7B;&#x4F3C;&#x7684;&#x8FDC;&#x7A0B;&#x63A7;&#x5236;&#x3002;&#x672C;&#x8282;&#x662F;&#x7C97;&#x5199;server&#x7AEF;&#x3002;</p>
+</blockquote>
+<h2 id="&#x9879;&#x76EE;"><a name="&#x9879;&#x76EE;" class="anchor-navigation-ex-anchor" href="#&#x9879;&#x76EE;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9879;&#x76EE;</h2>
+<h3 id="test1-&#x5B8C;&#x6210;listslave&#x529F;&#x80FD;"><a name="test1-&#x5B8C;&#x6210;listslave&#x529F;&#x80FD;" class="anchor-navigation-ex-anchor" href="#test1-&#x5B8C;&#x6210;listslave&#x529F;&#x80FD;"><i class="fa fa-link" aria-hidden="true"></i></a>TEST1-&#x5B8C;&#x6210;listslave&#x529F;&#x80FD;</h3>
+<pre class="language-"><code class="lang-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+
+    <span class="token string">&quot;net&quot;</span>
+    <span class="token string">&quot;fmt&quot;</span>
+
+    <span class="token string">&quot;regexp&quot;</span>
+
+    <span class="token string">&quot;log&quot;</span>
+
+    <span class="token string">&quot;sync&quot;</span>
+
+    <span class="token string">&quot;strings&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+    bufsize  <span class="token operator">=</span> <span class="token number">4096</span><span class="token operator">*</span><span class="token number">100</span>
+    MASTER <span class="token operator">=</span> <span class="token string">&quot;master&quot;</span>
+    SLAVE <span class="token operator">=</span> <span class="token string">&quot;slave&quot;</span>
+    SERVER <span class="token operator">=</span> <span class="token string">&quot;server&quot;</span>
+    <span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+    slaveConnPool <span class="token punctuation">[</span><span class="token punctuation">]</span>net<span class="token punctuation">.</span>Conn
+    masterConn net<span class="token punctuation">.</span>Conn
+     mu sync<span class="token punctuation">.</span>Mutex
+    <span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    listen<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;127.0.0.1:5000&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> listen<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;========================\na new conn: &quot;</span><span class="token punctuation">,</span> conn<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token function">AddslaveConnPool</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+
+        <span class="token keyword">go</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> listen<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+
+        buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> bufsize<span class="token punctuation">)</span>
+        nbyte<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;the socker has been closed by the %s&quot;</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;recv data:&quot;</span><span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>nbyte<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+
+        to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType <span class="token operator">:=</span> <span class="token function">analyseCommand</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>nbyte<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;from: %s, to: %s, cmd: %s, type: %s\n&quot;</span><span class="token punctuation">,</span> from<span class="token punctuation">,</span> to <span class="token punctuation">,</span>cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true">//add to slavepool</span>
+        <span class="token keyword">if</span> from <span class="token operator">==</span> MASTER <span class="token punctuation">{</span>
+            masterConn <span class="token operator">=</span> c
+            <span class="token comment" spellcheck="true">//delete the master conn from pool</span>
+            <span class="token function">DelslaveConnPool</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+
+            <span class="token function">dispatch</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;don&apos;t know who send this message&quot;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">AddslaveConnPool</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    slaveConnPool <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>slaveConnPool<span class="token punctuation">,</span> c<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;conn pool :&quot;</span><span class="token punctuation">,</span> slaveConnPool<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">DelslaveConnPool</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//fmt.Println(&quot;pool before delete&quot;, slaveConnPool)</span>
+    <span class="token keyword">var</span> pool <span class="token punctuation">[</span><span class="token punctuation">]</span>net<span class="token punctuation">.</span>Conn
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> slaveConnPool <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> v <span class="token operator">==</span> c <span class="token punctuation">{</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            pool <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>pool<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    slaveConnPool <span class="token operator">=</span> pool
+    <span class="token comment" spellcheck="true">//fmt.Println(&quot;pool after delete&quot;, slaveConnPool)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//return to, from, cmdString and cmdType</span>
+<span class="token keyword">func</span> <span class="token function">analyseCommand</span><span class="token punctuation">(</span>data <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span> <span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//re := regexp.MustCompile(`&quot;to&quot;[^&quot;]+&quot;([^&quot;]+)&quot;[^&quot;]+&quot;from&quot;[^&quot;]+&quot;([^&quot;]+)&quot;[^&quot;]+&quot;command&quot;[^&quot;]+&quot;([^&quot;+])&quot;[^&quot;]+&quot;type&quot;[^&quot;]+&quot;([^&quot;]+)&quot;.+`)</span>
+
+    re <span class="token operator">:=</span> regexp<span class="token punctuation">.</span><span class="token function">MustCompile</span><span class="token punctuation">(</span><span class="token string">`&quot;to&quot;[^&quot;]+&quot;([^&quot;]*)&quot;[^&quot;]+&quot;from&quot;[^&quot;]+&quot;([^&quot;]*)&quot;[^&quot;]+&quot;command&quot;[^&quot;]+&quot;([^&quot;]*)&quot;[^&quot;]+&quot;type&quot;[^&quot;]+&quot;([^&quot;]*)&quot;`</span><span class="token punctuation">)</span>
+    match <span class="token operator">:=</span> re<span class="token punctuation">.</span><span class="token function">FindStringSubmatch</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>match<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">5</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;not enough arguments! please input again...&quot;</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> match<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> match<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> match<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> match<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">dispatch</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> to <span class="token operator">==</span> SERVER <span class="token punctuation">{</span>
+        <span class="token function">cmdtoServer</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> to <span class="token operator">==</span> SLAVE <span class="token punctuation">{</span>
+        <span class="token function">cmdtoSlave</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> to <span class="token operator">==</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">{</span>
+        <span class="token function">cmdtoServer</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;wrong sender or wrong reciever&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">cmdtoServer</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+
+    <span class="token keyword">if</span> cmdString <span class="token operator">==</span> <span class="token string">&quot;listSlave&quot;</span> <span class="token punctuation">{</span>
+        slavelist <span class="token operator">:=</span> <span class="token function">listSlave</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;slavelist:&quot;</span><span class="token punctuation">,</span> slavelist<span class="token punctuation">)</span>
+        <span class="token function">SendtoMaster</span><span class="token punctuation">(</span>slavelist<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">cmdtoSlave</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">listSlave</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> list  <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> c <span class="token operator">:=</span> <span class="token keyword">range</span> slaveConnPool<span class="token punctuation">{</span>
+        list <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> list
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">SendtoMaster</span><span class="token punctuation">(</span>list <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//{&quot;slaveList&quot;: [&quot;127.0.0.1-7345&quot;, &quot;127.0.0.1&quot;]}#finished#</span>
+    message <span class="token operator">:=</span> <span class="token string">`{&quot;slaveList&quot;: [&quot;`</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> list <span class="token punctuation">{</span>
+        v <span class="token operator">=</span> strings<span class="token punctuation">.</span><span class="token function">Replace</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-&quot;</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        message <span class="token operator">+=</span> v<span class="token operator">+</span><span class="token string">`&quot;`</span>
+        <span class="token keyword">if</span> k <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+            message <span class="token operator">+=</span> <span class="token string">`, &quot;`</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    message <span class="token operator">+=</span> <span class="token string">`]}#finished#`</span>
+
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;message to master:&quot;</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+    masterConn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="test2-&#x5B8C;&#x6210;&#x53D1;&#x9001;&#x547D;&#x4EE4;"><a name="test2-&#x5B8C;&#x6210;&#x53D1;&#x9001;&#x547D;&#x4EE4;" class="anchor-navigation-ex-anchor" href="#test2-&#x5B8C;&#x6210;&#x53D1;&#x9001;&#x547D;&#x4EE4;"><i class="fa fa-link" aria-hidden="true"></i></a>TEST2-&#x5B8C;&#x6210;&#x53D1;&#x9001;&#x547D;&#x4EE4;</h3>
+<pre class="language-"><code class="lang-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+
+    <span class="token string">&quot;net&quot;</span>
+    <span class="token string">&quot;fmt&quot;</span>
+
+    <span class="token string">&quot;regexp&quot;</span>
+
+    <span class="token string">&quot;log&quot;</span>
+
+    <span class="token string">&quot;sync&quot;</span>
+
+    <span class="token string">&quot;strings&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">(</span>
+    bufsize  <span class="token operator">=</span> <span class="token number">4096</span><span class="token operator">*</span><span class="token number">100</span>
+    MASTER <span class="token operator">=</span> <span class="token string">&quot;master&quot;</span>
+    SLAVE <span class="token operator">=</span> <span class="token string">&quot;slave&quot;</span>
+    SERVER <span class="token operator">=</span> <span class="token string">&quot;server&quot;</span>
+    <span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">var</span> <span class="token punctuation">(</span>
+    slaveConnPool <span class="token punctuation">[</span><span class="token punctuation">]</span>net<span class="token punctuation">.</span>Conn
+    masterConn net<span class="token punctuation">.</span>Conn
+     mu sync<span class="token punctuation">.</span>Mutex
+    <span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    listen<span class="token punctuation">,</span> err <span class="token operator">:=</span> net<span class="token punctuation">.</span><span class="token function">Listen</span><span class="token punctuation">(</span><span class="token string">&quot;tcp&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;127.0.0.1:5000&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        conn<span class="token punctuation">,</span> err <span class="token operator">:=</span> listen<span class="token punctuation">.</span><span class="token function">Accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;========================\na new conn: &quot;</span><span class="token punctuation">,</span> conn<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token function">AddslaveConnPool</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+
+        <span class="token keyword">go</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>conn<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">defer</span> listen<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">handleConn</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">defer</span> c<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+
+        buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> bufsize<span class="token punctuation">)</span>
+        nbyte<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;the socker has been closed by the %s&quot;</span><span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span>
+        <span class="token punctuation">}</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;recv data:&quot;</span><span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>nbyte<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType <span class="token operator">:=</span> <span class="token function">analyseCommand</span><span class="token punctuation">(</span><span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>nbyte<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;from: %s, to: %s, cmd: %s, type: %s\n&quot;</span><span class="token punctuation">,</span> from<span class="token punctuation">,</span> to <span class="token punctuation">,</span>cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true">//add to slavepool</span>
+        <span class="token keyword">if</span> from <span class="token operator">==</span> MASTER <span class="token punctuation">{</span>
+            masterConn <span class="token operator">=</span> c
+            <span class="token comment" spellcheck="true">//delete the master conn from pool</span>
+            <span class="token function">DelslaveConnPool</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span>
+
+            <span class="token function">dispatch</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;don&apos;t know who send this message&quot;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">AddslaveConnPool</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    slaveConnPool <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>slaveConnPool<span class="token punctuation">,</span> c<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;conn pool :&quot;</span><span class="token punctuation">,</span> slaveConnPool<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">DelslaveConnPool</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">//fmt.Println(&quot;pool before delete&quot;, slaveConnPool)</span>
+    <span class="token keyword">var</span> pool <span class="token punctuation">[</span><span class="token punctuation">]</span>net<span class="token punctuation">.</span>Conn
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> slaveConnPool <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> v <span class="token operator">==</span> c <span class="token punctuation">{</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            pool <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>pool<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    slaveConnPool <span class="token operator">=</span> pool
+    <span class="token comment" spellcheck="true">//fmt.Println(&quot;pool after delete&quot;, slaveConnPool)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//return to, from, cmdString and cmdType</span>
+<span class="token keyword">func</span> <span class="token function">analyseCommand</span><span class="token punctuation">(</span>data <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">(</span> <span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span><span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//re := regexp.MustCompile(`&quot;to&quot;[^&quot;]+&quot;([^&quot;]+)&quot;[^&quot;]+&quot;from&quot;[^&quot;]+&quot;([^&quot;]+)&quot;[^&quot;]+&quot;command&quot;[^&quot;]+&quot;([^&quot;+])&quot;[^&quot;]+&quot;type&quot;[^&quot;]+&quot;([^&quot;]+)&quot;.+`)</span>
+
+    re <span class="token operator">:=</span> regexp<span class="token punctuation">.</span><span class="token function">MustCompile</span><span class="token punctuation">(</span><span class="token string">`&quot;to&quot;[^&quot;]+&quot;([^&quot;]*)&quot;[^&quot;]+&quot;from&quot;[^&quot;]+&quot;([^&quot;]*)&quot;[^&quot;]+&quot;command&quot;[^&quot;]+&quot;([^&quot;]*)&quot;[^&quot;]+&quot;type&quot;[^&quot;]+&quot;([^&quot;]*)&quot;`</span><span class="token punctuation">)</span>
+    match <span class="token operator">:=</span> re<span class="token punctuation">.</span><span class="token function">FindStringSubmatch</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token function">len</span><span class="token punctuation">(</span>match<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">5</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;not enough arguments! please input again...&quot;</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> match<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> match<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> match<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> match<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">dispatch</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> to <span class="token operator">==</span> SERVER <span class="token operator">||</span> to <span class="token operator">==</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">{</span>
+        <span class="token function">cmdtoServer</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">cmdtoSlave</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">cmdtoServer</span><span class="token punctuation">(</span>cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+
+    <span class="token keyword">if</span> cmdString <span class="token operator">==</span> <span class="token string">&quot;listSlave&quot;</span> <span class="token punctuation">{</span>
+        slavelist <span class="token operator">:=</span> <span class="token function">listSlave</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;slavelist:&quot;</span><span class="token punctuation">,</span> slavelist<span class="token punctuation">)</span>
+        <span class="token function">SendtoMaster</span><span class="token punctuation">(</span>slavelist<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">cmdtoSlave</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> c <span class="token operator">:=</span> <span class="token keyword">range</span> slaveConnPool<span class="token punctuation">{</span>
+        <span class="token keyword">if</span> c<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> strings<span class="token punctuation">.</span><span class="token function">Replace</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token string">&quot;-&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">SendtoSlave</span><span class="token punctuation">(</span>c <span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">listSlave</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span> <span class="token punctuation">{</span>
+    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> list  <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> c <span class="token operator">:=</span> <span class="token keyword">range</span> slaveConnPool<span class="token punctuation">{</span>
+        list <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> c<span class="token punctuation">.</span><span class="token function">RemoteAddr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> list
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">SendtoMaster</span><span class="token punctuation">(</span>list <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//{&quot;slaveList&quot;: [&quot;127.0.0.1-7345&quot;, &quot;127.0.0.1&quot;]}#finished#</span>
+    message <span class="token operator">:=</span> <span class="token string">`{&quot;slaveList&quot;: [&quot;`</span>
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> list <span class="token punctuation">{</span>
+        v <span class="token operator">=</span> strings<span class="token punctuation">.</span><span class="token function">Replace</span><span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token string">&quot;:&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-&quot;</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+        message <span class="token operator">+=</span> v<span class="token operator">+</span><span class="token string">`&quot;`</span>
+        <span class="token keyword">if</span> k <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+            message <span class="token operator">+=</span> <span class="token string">`, &quot;`</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    message <span class="token operator">+=</span> <span class="token string">`]}#finished#`</span>
+
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;message to master:&quot;</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+    masterConn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">SendtoSlave</span><span class="token punctuation">(</span>c net<span class="token punctuation">.</span>Conn<span class="token punctuation">,</span> cmdString<span class="token punctuation">,</span> cmdType <span class="token builtin">string</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> cmdType <span class="token operator">==</span> <span class="token string">&quot;commandInConfig&quot;</span> <span class="token punctuation">{</span>
+        message <span class="token operator">:=</span>  <span class="token string">`{&quot;type&quot;: &quot;commandInConfig&quot;, &quot;command&quot;: &quot;`</span> <span class="token operator">+</span> cmdString <span class="token operator">+</span> <span class="token string">`&quot;}#finished#`</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;message to Slave:&quot;</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span>
+        c<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;don&apos;t know the cmd type!&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="&#x9644;&#x5F55;"><a name="&#x9644;&#x5F55;" class="anchor-navigation-ex-anchor" href="#&#x9644;&#x5F55;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9644;&#x5F55;</h2>
+<h3 id="&#x540E;&#x671F;&#x4E8B;&#x9879;"><a name="&#x540E;&#x671F;&#x4E8B;&#x9879;" class="anchor-navigation-ex-anchor" href="#&#x540E;&#x671F;&#x4E8B;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x540E;&#x671F;&#x4E8B;&#x9879;</h3>
+<h4 id="&#x4E8B;&#x9879;1-&#x6570;&#x636E;&#x7C7B;&#x578B;"><a name="&#x4E8B;&#x9879;1-&#x6570;&#x636E;&#x7C7B;&#x578B;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x9879;1-&#x6570;&#x636E;&#x7C7B;&#x578B;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x9879;1-&#x6570;&#x636E;&#x7C7B;&#x578B;</h4>
+<p>&#x7531;&#x4E8E;python&#x548C;go&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E0A;&#x7684;&#x4E0D;&#x540C;&#xFF0C;python&#x4E2D;&#x53D1;&#x7684;&#x90FD;&#x662F;&#x5B57;&#x5178;&#x5F62;&#x5F0F;&#x7684;&#xFF0C;&#x5982;&#xFF1A;</p>
+<pre class="language-"><code>{&quot;to&quot;: &quot;&quot;, &quot;from&quot;: &quot;master&quot;, &quot;command&quot;: &quot;listSlave&quot;, &quot;type&quot;: &quot;&quot;}
+</code></pre><p>&#x8FD9;&#x5728;python&#x4E2D;&#x5F88;&#x5BB9;&#x6613;&#x952E;&#x503C;&#x5BF9;&#x627E;&#x5230;&#xFF0C;&#x4F46;&#x662F;&#x5230;&#x4E86;go&#x5C31;&#x5FC5;&#x987B;&#x5F97;<em>&#x7FFB;&#x8BD1;</em>&#xFF0C;&#x6240;&#x4EE5;&#x540E;&#x671F;&#x7B49;&#x6574;&#x4E2A;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;&#x9700;&#x8981;&#x628A;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x6539;&#x6362;&#x6210;&#x66F4;&#x9002;&#x5408;go&#x8BED;&#x8A00;&#xFF0C;&#x8FD9;&#x6837;&#x6548;&#x7387;&#x66F4;&#x9AD8;&#x3002;</p>
+<h4 id="&#x4E8B;&#x9879;2-&#x521D;&#x59CB;&#x5316;&#x89D2;&#x8272;&#x786E;&#x8BA4;"><a name="&#x4E8B;&#x9879;2-&#x521D;&#x59CB;&#x5316;&#x89D2;&#x8272;&#x786E;&#x8BA4;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x9879;2-&#x521D;&#x59CB;&#x5316;&#x89D2;&#x8272;&#x786E;&#x8BA4;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x9879;2-&#x521D;&#x59CB;&#x5316;&#x89D2;&#x8272;&#x786E;&#x8BA4;</h4>
+<p>&#x73B0;&#x5728;&#x8FD8;&#x6CA1;&#x5206;&#x6790;&#x6E05;&#x695A;python&#x4E2D;&#x5982;&#x4F55;&#x786E;&#x5B9A;slave&#x548C;master&#x7684;&#x89D2;&#x8272;&#xFF0C;&#x540E;&#x671F;&#x5199;&#x4EE3;&#x7801;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5728;&#x521D;&#x59CB;&#x5316;&#x8FDE;&#x63A5;&#x65F6;&#xFF0C;&#x770B;&#x5982;&#x4F55;&#x786E;&#x8BA4;&#x3002;&#x73B0;&#x5728;<code>listSlave</code>&#x8FD4;&#x56DE;&#x7684;&#x90FD;&#x662F;&#x5168;&#x90E8;&#x7684;&#xFF0C;&#x7531;master&#x786E;&#x5B9A;&#xFF08;&#x5B83;&#x77E5;&#x9053;&#x81EA;&#x5DF1;&#x662F;&#x54EA;&#x4E2A;&#xFF09;&#x3002;</p>
+<h4 id="&#x4E8B;&#x9879;3-goroutine"><a name="&#x4E8B;&#x9879;3-goroutine" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x9879;3-goroutine"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x9879;3-goroutine</h4>
+<p>&#x6BCF;&#x4E2A;&#x8FDE;&#x63A5;&#x90FD;&#x662F;&#x4E00;&#x4E2A;goroutine&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x8BB0;&#x4E0B;slave&#x7684;conn&#x5C31;&#x597D;&#xFF0C;master&#x7684;&#x4E0D;&#x592A;&#x9700;&#x8981;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x53EF;&#x80FD;&#x7531;slave&#x53D1;&#x7ED9;master&#xFF0C;&#x6240;&#x4EE5;slave&#x7684;conn&#xFF08;goroutine&#xFF09;&#x4E0D;&#x4F1A;&#x8DE8;conn&#x5411;master&#x7684;conn&#x53D1;&#x9001;&#x6D88;&#x606F;&#x3002;&#x800C;master&#x53D1;&#x7ED9;slave&#x7684;&#x5219;&#x53EF;&#x4EE5;&#x7528;slavepool&#x627E;&#x5230;&#xFF08;&#x5E76;&#x4E14;&#x6D88;&#x606F;&#x7684;to&#x5B57;&#x6BB5;&#x51B3;&#x5B9A;&#x4E86;&#x53D1;&#x7ED9;&#x8C01;&#xFF09;&#x3002;</p>
+<h4 id="&#x4E8B;&#x9879;4-socket&#x5173;&#x95ED;"><a name="&#x4E8B;&#x9879;4-socket&#x5173;&#x95ED;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x9879;4-socket&#x5173;&#x95ED;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x9879;4-socket&#x5173;&#x95ED;</h4>
+<p>&#x8FD9;&#x4E2A;&#x4EBA;&#x5199;&#x7684;python&#x4F1A;&#x81EA;&#x52A8;&#x5173;&#x95ED;socket&#xFF0C;&#x800C;&#x6BCF;&#x6B21;&#x53D1;&#x9001;&#x65F6;&#x4F1A;&#x65B0;&#x5EFA;&#x8FDE;&#x63A5;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x80FD;&#x6C38;&#x4E45;&#x4F7F;&#x7528;<code>MasterConn</code>.</p>
+<h4 id="&#x4E8B;&#x9879;5-&#x53D1;&#x9001;&#x6570;&#x636E;"><a name="&#x4E8B;&#x9879;5-&#x53D1;&#x9001;&#x6570;&#x636E;" class="anchor-navigation-ex-anchor" href="#&#x4E8B;&#x9879;5-&#x53D1;&#x9001;&#x6570;&#x636E;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8B;&#x9879;5-&#x53D1;&#x9001;&#x6570;&#x636E;</h4>
+<pre class="language-"><code class="lang-go">masterConn<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="&#x76F8;&#x5173;&#x77E5;&#x8BC6;"><a name="&#x76F8;&#x5173;&#x77E5;&#x8BC6;" class="anchor-navigation-ex-anchor" href="#&#x76F8;&#x5173;&#x77E5;&#x8BC6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x76F8;&#x5173;&#x77E5;&#x8BC6;</h3>
+<h4 id="read&#x63A5;&#x53E3;&#x7684;&#x4F7F;&#x7528;"><a name="read&#x63A5;&#x53E3;&#x7684;&#x4F7F;&#x7528;" class="anchor-navigation-ex-anchor" href="#read&#x63A5;&#x53E3;&#x7684;&#x4F7F;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>Read&#x63A5;&#x53E3;&#x7684;&#x4F7F;&#x7528;</h4>
+<pre class="language-"><code class="lang-go">buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">4096</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//&#x5E94;&#x8BE5;&#x662F;&#x628A;conn&#x4E2D;&#x63A5;&#x6536;&#x7684;&#x6570;&#x636E;&#x5199;&#x5165;&#x5230;&#x4E86;buf&#x4E2D;</span>
+nbyte<span class="token punctuation">,</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x63A5;&#x6536;&#x6570;&#x636E;&#x7684;&#x957F;&#x5EA6;</span>
+
+<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+   <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//&#x6253;&#x5370;&#x6570;&#x636E;</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;recv data:&quot;</span><span class="token punctuation">,</span> <span class="token function">string</span><span class="token punctuation">(</span>buf<span class="token punctuation">[</span><span class="token punctuation">:</span>nbyte<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h4 id="if-else&#x683C;&#x5F0F;"><a name="if-else&#x683C;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#if-else&#x683C;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>if else&#x683C;&#x5F0F;</h4>
+<pre class="language-"><code class="lang-go"><span class="token keyword">if</span> num <span class="token operator">:=</span> <span class="token number">9</span><span class="token punctuation">;</span> num <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> <span class="token string">&quot;is negative&quot;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> num <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token punctuation">{</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> <span class="token string">&quot;has 1 digit&quot;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> <span class="token string">&quot;has multiple digits&quot;</span>
+  <span class="token punctuation">}</span>
+</code></pre>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; whuwzp.top 2018 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x672C;&#x6587;&#x6863;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2018-04-22 10:24:53
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1.html" class="navigation navigation-prev " aria-label="Previous page: slave端">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.html" class="navigation navigation-next " aria-label="Next page: 重写项目">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"server端","level":"2.2","depth":1,"next":{"title":"重写项目","level":"2.3","depth":1,"path":"3.md","ref":"3.md","articles":[]},"previous":{"title":"slave端","level":"2.1","depth":1,"path":"1.md","ref":"1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-plus","prism","-highlight","-katex","mathjax","include-codeblock","splitter","expandable-chapters-small","simple-page-toc","anchors","anchor-navigation-ex@0.1.8","todo","copy-code-button","alerts","tbfed-pagefooter","favicon","graph"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © whuwzp.top 2018","modify_label":"本文档修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"todo":{},"splitter":{},"graph":{},"fontsettings":{"theme":"white","family":"sans","size":2},"anchor-navigation-ex":{"isRewritePageTitle":false,"isShowTocTitleIcon":true,"tocLevel1Icon":"fa fa-hand-o-right","tocLevel2Icon":"fa fa-hand-o-right","tocLevel3Icon":"fa fa-hand-o-right"},"favicon":{"shortcut":"img/sys/wiki.jpg","bookmark":"img/sys/wiki.jpg"},"alerts":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"copy-code-button":{},"include-codeblock":{"check":false,"edit":true,"fixlang":false,"lang":"","template":"ace","theme":"chrome","unindent":true},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"anchors":{},"search-plus":{}},"theme":"default","author":"whuwzp","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"WHUWZP's Go-Learning","language":"zh-hans","output.name":"site","links":{"sidebar":{"Go-Learning":"whuwzp.github.io/golearning"}},"gitbook":"3.2.3","description":"各类信息汇总wiki系统"},"file":{"path":"2.md","mtime":"2018-04-22T02:24:53.882Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-12T14:17:25.999Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-alerts/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
